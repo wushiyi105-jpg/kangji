@@ -140,6 +140,53 @@ Start the Web UI:
 python -m kangji serve           # http://127.0.0.1:8772
 ```
 
+Run in Docker (the container uses the default port 8772):
+
+```bash
+docker build -t kangji .
+docker run -p 8772:8772 kangji
+```
+
+## 🤔 Why not just ask a general LLM
+
+A general model can say "do not take these together". Kangji adds the three things it cannot:
+
+1. **Hard facts computed locally** — which box expired, whether two boxes share an ingredient, whether a contraindication exists, all come from local rules that are deterministic and reviewable. The model handles storage advice, what to deal with first, and when not to tough it out alone.
+2. **Drug names must verify** — the model's worst habit is recommending something not in your box. Every drug name in its advice is checked against the inventory, and anything missing is flagged instead of sending you shopping.
+3. **The medicine box stays home** — what you take, who takes it, how many pills remain, live in local SQLite. That is far more sensitive than spending records and is never uploaded.
+4. **Hard facts work offline** — `check` is entirely local, still listing expired, duplicated and conflicting items; only the `advice` paragraph needs a model.
+
+## 🎯 Use cases
+
+- **Quarterly clean-out**: import the box and run `check` once — bin the expired first, then spot duplicates such as two cold medicines that both contain paracetamol, without reading every leaflet.
+- **Before an elderly parent takes several medicines**: check contraindications first, then read when not to tough it out and to go to hospital, instead of guessing.
+- **Deciding what to pack for a trip**: see which box expires soon and which has two pills left, and take only those.
+
+## 🗺 Roadmap
+
+- **Better interaction data**: source and population for each contraindication rule, with "limited evidence" stated where true.
+- **Photograph a box to add it**: fill name and specification from one photo, reducing typing errors.
+- **Dose reminders**: daily reminders by frequency, with a record of whether today's dose was taken.
+- **Per-person boxes**: separate boxes for family members so an elder's medicine never lands in a child's list.
+- **Expiry nudges**: warn at 30 and 7 days before expiry, not when it is already time to bin it.
+
+## ❓ FAQ
+
+**Where do I get an API key?**
+The project ships without one. It defaults to Zhipu (`glm-4.6`); DeepSeek or a local model also work. Only `advice` uses it — `check` does not.
+
+**Where is data stored, and is it uploaded?**
+The inventory and check records sit in local SQLite (default `data/kangji.db`); a model call sends drug names and rule hits, not the personal medication history in the box.
+
+**Does it work without a key?**
+Yes. `check` is fully local: expiry, duplicate ingredients and contraindications still evaluate. Only the `advice` paragraph is missing.
+
+**How do I switch models?**
+Change `LLM_BASE_URL`, `LLM_MODEL` and `LLM_API_KEY`; local rules are unaffected.
+
+**Can it replace a doctor?**
+No, and it does not try. It lays out the facts in your box and tells you when to seek care; diagnosis and prescriptions are out of scope.
+
 ## Commands
 
 | Command | What it does |
