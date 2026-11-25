@@ -1,5 +1,7 @@
 # 康记 kangji
 
+[![test](https://github.com/wushiyi105-jpg/kangji/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/kangji/actions)
+
 家里那箱药，翻出来总有几个说不清的：这盒过期没有、这两盒能不能一起吃、上次买的还剩几片。
 
 康记把药箱记下来，然后分两步处理：**过期、重复成分、禁忌组合这些硬事实，本地规则算，不碰模型**；**怎么收纳、先处理哪个、什么情况别自己扛，才交给模型讲**。
