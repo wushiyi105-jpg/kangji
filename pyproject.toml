@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kangji"
+version = "0.1.0"
+description = "家庭药箱检查：过期、重复成分、禁忌组合走本地规则，管理与就医常识才问模型"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[project.scripts]
+kangji = "kangji.cli:main"
+
+[tool.setuptools]
+packages = ["kangji"]

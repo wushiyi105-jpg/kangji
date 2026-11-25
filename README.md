@@ -1,6 +1,6 @@
 # 康记 kangji
 
-[![test](https://github.com/wushiyi105-jpg/kangji/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/kangji/actions)
+[![test](https://github.com/wushiyi105-jpg/kangji/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/kangji/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 家里那箱药，翻出来总有几个说不清的：这盒过期没有、这两盒能不能一起吃、上次买的还剩几片。
 
