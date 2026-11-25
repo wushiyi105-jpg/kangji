@@ -8,7 +8,7 @@ Kangji records the cabinet and handles it in two steps: **expiry, duplicated ing
 
 The model has one very annoying habit here: midway through it recommends a medicine that is not in your cabinet at all. So every drug name in the advice goes through a check — anything not on the list gets flagged.
 
-![demo](assets/demo.gif)
+![usage](assets/demo.gif)
 
 ## Why the split has to be this strict
 
