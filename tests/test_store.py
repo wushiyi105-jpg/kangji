@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from datetime import date
 
-from kangji import check, drugs, store
+from kangji import check, store
 
 
 class StoreTest(unittest.TestCase):

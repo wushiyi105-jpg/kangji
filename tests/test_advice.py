@@ -4,7 +4,6 @@ from unittest.mock import patch
 
 from kangji import advice
 
-
 RESULT = {
     "expired": [{"name": "氯雷他定", "generic": "氯雷他定", "expire": "2026-11-10", "days_ago": 15}],
     "expiring": [{"name": "999感冒灵", "generic": "复方感冒药", "expire": "2026-06-01", "days_left": 25}],

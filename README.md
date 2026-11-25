@@ -1,6 +1,6 @@
 # 康记 kangji
 
-[![test](https://github.com/wushiyi105-jpg/kangji/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/kangji/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![test](https://github.com/wushiyi105-jpg/kangji/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/kangji/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [![codecov](https://codecov.io/gh/wushiyi105-jpg/kangji/branch/main/graph/badge.svg)](https://codecov.io/gh/wushiyi105-jpg/kangji)
 
 家里那箱药，翻出来总有几个说不清的：这盒过期没有、这两盒能不能一起吃、上次买的还剩几片。
 
@@ -107,6 +107,21 @@
 **三、模型的编号靠不住。** 它给的 `n` 有时缺、有时重复、有时从 0 开始。第一版直接拿来打印，出来是「None. 清理过期药」「2. …」「1. …」。现在编号一律由程序重排，并硬性只保留前五条——给十条建议的药箱顾问，等于没给建议。
 
 **四、药名核验。** `find_foreign_meds` 把整张药库的名字和别名拿去扫模型输出：命中了、但通用名不在你的药箱里，就算「箱外药」。同一条在建议正文和结尾小结里各出现一次，只提示一次。测试里钉着 `test_catches_new_drug`（「可以配合布洛芬」必须被抓）和 `test_catches_brand_alias`（「芬必得」也要被抓）。
+
+## 数据流
+
+一条数据在这几个模块之间怎么走：
+
+```mermaid
+flowchart LR
+    A[药箱 CSV] --> B[drugs.py<br/>药名 · 成分 · 有效期 · 库存]
+    B --> C[check.py<br/>过期 / 重复成分 / 禁忌 本地规则]
+    C --> D[advice.py<br/>硬事实 + 药箱清单喂模型]
+    D --> E[llm.py<br/>只讲收纳与就医常识]
+    E --> F{advice.py<br/>药名必须在箱子里}
+    F -->|不在| G[标出来：箱子里没有这药]
+    F -->|在| H[cli.py / web.py<br/>清单 + 建议]
+```
 
 ## 快速开始
 

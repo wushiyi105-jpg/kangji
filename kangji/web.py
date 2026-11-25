@@ -9,7 +9,7 @@ import json
 import urllib.parse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-from . import advice, check, drugs, llm, store
+from . import advice, check, drugs, store
 
 PAGE = """<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8">

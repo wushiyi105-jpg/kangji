@@ -2,10 +2,9 @@ import json
 import os
 import tempfile
 import unittest
-from datetime import date
 from unittest.mock import patch
 
-from kangji import advice, check, cli, drugs, store
+from kangji import advice, cli, store
 
 
 class CliTest(unittest.TestCase):

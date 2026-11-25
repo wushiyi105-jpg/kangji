@@ -6,7 +6,7 @@ import argparse
 import json
 import os
 
-from . import advice, check, drugs, llm, store
+from . import advice, check, drugs, store
 
 _OPENED: list = []
 
