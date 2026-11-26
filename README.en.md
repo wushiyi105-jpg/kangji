@@ -245,6 +245,4 @@ This is not a medical tool. It does not know your condition and should not decid
 
 ---
 
-Author: shiyi
-Email: wushiyi105@gmail.com
-GitHub: [wushiyi105-jpg](https://github.com/wushiyi105-jpg)
+Luo Zhizhi · 15071889700
