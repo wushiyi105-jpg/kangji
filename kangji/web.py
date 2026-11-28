@@ -14,7 +14,7 @@ from . import advice, check, drugs, store
 PAGE = """<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>康记 · 家里那箱药</title>
+<title>康记 · 哪些药重复了</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#0b0f14;color:#c9d1d9;font:15px/1.65 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
@@ -38,8 +38,76 @@ th{color:#8b949e;font-weight:400}
 .k{color:#8b949e;font-size:13px}
 h2{font-size:15px;margin:20px 0 8px}
 .warn{color:#e3b341}
+
+h1{font-size:clamp(31px,5vw,39px);line-height:1.26}
+.prod{display:block;font-size:11px;line-height:1.4;letter-spacing:.18em;font-weight:650;margin-bottom:8px;opacity:.72}
+.lede,.sub{max-width:62ch;line-height:1.75}
+.route{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:0 0 20px;border:1px solid var(--line);background:var(--line)}
+.route span{padding:11px 13px;background:var(--card);font-size:12px;line-height:1.5}
+.route b{display:block;font-size:10px;letter-spacing:.1em;margin-bottom:3px;opacity:.66}
+button{min-height:46px}
+input,select{min-height:44px}
+@media(max-width:680px){
+  .wrap{padding:20px 16px 56px}
+  .route{grid-template-columns:1fr}
+  h1{font-size:30px!important}
+  .row>div{min-width:100%!important}
+  button{width:100%}
+}
+
+body{background:#f3f5ef;color:#1d3d3b;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:940px}
+header{padding:8px 0 20px;border-bottom:3px solid #2d6b65;margin-bottom:20px}
+header h1{font-size:37px;line-height:1.25;letter-spacing:-.02em;font-weight:750}
+header p{color:#65746f;font-size:14px}
+.card{background:#fffefa;border:1px solid #ced8cf;border-radius:2px;box-shadow:none}
+button{background:#2d6b65;border-radius:2px;letter-spacing:.06em}
+button:hover{background:#245752}
+textarea,input,select{background:#fff;border-color:#c9d4cc;border-radius:2px}
+textarea:focus,input:focus,select:focus{border-color:#2d6b65;box-shadow:0 0 0 2px #d5e4df}
+.item{border-left:3px solid #2d6b65}
+.cost .cell,.cell{border-radius:2px;border-color:#ced8cf;background:#f8faf6}
+h3{color:#2d6b65;letter-spacing:.08em}
+
+
+/* palette-normalized */
+:root{--bg:#f3f5ef;--card:#fffefa;--ink:#1d3d3b;--text:#1d3d3b;--dim:#65746f;--line:#ced8cf;--accent:#2d6b65}
+pre{background:#f8faf6;color:#1d3d3b;border-color:#ced8cf;border-radius:2px}
+
+/* polish-batch1 */
+button.ghost,button.secondary{background:transparent!important;color:#2d6b65!important;border:1px solid #ced8cf!important}
+
+header{display:block!important;max-width:940px;margin:0 auto!important;padding:24px 20px 0!important;background:transparent!important;border:0!important}
+header>span{display:none!important}
+header h1{font-size:36px!important;line-height:1.24!important;margin:0 0 8px!important;color:#1f2933!important}
+header .lede{margin:0!important}
+.route{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;max-width:940px;min-height:58px;margin:14px auto 18px!important;background:#ced8cf!important;border:1px solid #ced8cf!important}
+.route span{display:block!important;padding:12px 14px!important;background:#fff!important;color:#1f2933!important}
+main{max-width:940px;margin:0 auto;background:#fff;border-left:1px solid #ced8cf;border-right:1px solid #ced8cf}
+header h1{color:#1d3d3b!important}
+
+/* mobile-32 */
+
+@media(max-width:760px){
+  main{grid-template-columns:1fr!important}
+  aside{border-right:0!important;border-bottom:1px solid #ced8cf;width:auto!important}
+  section{padding:16px!important}
+  .row{flex-wrap:wrap!important}
+  .row>div{min-width:100%!important}
+  h1{font-size:30px!important}
+  .route{grid-template-columns:1fr!important}
+  button{min-height:48px}
+  pre{overflow-x:auto}
+}
+
+/* mobile-height */
+@media(max-width:760px){main{min-height:auto!important}aside{min-height:0!important}}
 </style></head><body>
-<header><h1>康记</h1><span class="sub">家里那箱药，过期了没有、有没有重复、能不能一起吃</span></header>
+<header><h1><span class="prod">康记</span>家里哪些药，重复了</h1><span class="sub">家里那箱药，过期了没有、有没有重复、能不能一起吃</span>
+    <p class="lede">给替家人整理药盒的人：登记药名、成分、规格、有效期和存放处，重复成分与临期项目直接排在首屏。</p>
+  </header>
+  <div class="route" aria-label="任务步骤"><span><b>01</b>按储位录药</span><span><b>02</b>查重复成分</span><span><b>03</b>带走待问清单</span></div>
+
 <main>
 <aside>
   <h2>加一盒</h2>
